@@ -36,7 +36,7 @@ public class SSC_movement : MonoBehaviour
         
     }
 
-
+    
     private void FixedUpdate()
     {
         
@@ -57,10 +57,10 @@ public class SSC_movement : MonoBehaviour
             AController.SetBool("Moving", false);
         }
 
-
+        
         Vector2 movement = new Vector2(moveMultiplyer * MaxMoveSpeed, 0);
-        Debug.Log(movement.x);
         rb.AddForce(movement, ForceMode2D.Impulse);
+        
 
     }
 
