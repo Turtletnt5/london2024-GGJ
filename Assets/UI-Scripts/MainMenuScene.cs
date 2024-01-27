@@ -7,7 +7,7 @@ public class MainMenuScene : MonoBehaviour
 {
     public void PlayGame()
     {
-        //SceneManager.LoadScene("GameChaptersScene");
+        SceneManager.LoadScene("GameChaptersScene");
     }
 
     public void CreditScreen()
