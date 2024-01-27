@@ -28,6 +28,7 @@ public class SSC_movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         AController = GetComponent<Animator>();
+        //AController.SetBool("skipIntro", true);
     }
 
     // Update is called once per frame
