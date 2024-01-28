@@ -1,5 +1,5 @@
-//using System.Collections;
-//using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveCycle_Cars : MonoBehaviour
@@ -39,4 +39,6 @@ public class MoveCycle_Cars : MonoBehaviour
             transform.Translate(direction * VehicleSpeed * Time.deltaTime);
         }
     }
+
+
 }
