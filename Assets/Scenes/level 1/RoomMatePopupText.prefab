@@ -99,8 +99,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A quest Quest window, how is that even posible? Well may as well complete
-    them and see if it gives me any rewards
+  m_text: Ok Im awake. Now get out of my room!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -127,8 +126,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 1.5
+  m_fontSizeBase: 1.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -283,14 +282,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4909921812305170829}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.86602545, w: 0.49999994}
-  m_LocalPosition: {x: -0.45833334, y: -0.26, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.8131237, w: 0.5820909}
+  m_LocalPosition: {x: 0.459, y: -0.378, z: 0}
   m_LocalScale: {x: 0.26666665, y: 0.19047621, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 810645562365894926}
   m_Father: {fileID: 6901160423805301043}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 120}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 108.805}
 --- !u!212 &2578411713449397767
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -439,7 +438,7 @@ GameObject:
   - component: {fileID: 5422233765295788268}
   - component: {fileID: 4658683283084999254}
   m_Layer: 0
-  m_Name: IntroPopupText
+  m_Name: RoomMatePopupText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -473,7 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bfa7b1b4a78db48b4d3a18a9519302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelayTime: 3
+  DelayTime: 5
 --- !u!1 &8891334529370352976
 GameObject:
   m_ObjectHideFlags: 0
