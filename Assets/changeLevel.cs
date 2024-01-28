@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class changeLevel : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class changeLevel : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log("change scean");
-        
+        SceneManager.LoadScene("GameChaptersScene");
     }
     
 }
