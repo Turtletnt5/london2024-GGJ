@@ -8,7 +8,7 @@ public class LevelsMenuScene : MonoBehaviour
 
     public void PlayLevelOne()
     {
-        //SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Level1WakingUp");
     }
 
     public void PlayLevelTwo()
