@@ -19,23 +19,14 @@ public class Level1ChoiceAnimations : MonoBehaviour
         
     }
 
-    //plays bucket of water animation
-    void bucketOfWater()
+    //plays bucket of alarmclock sound
+    public AudioSource AlarmAudioSource;
+    public AudioClip AlarmAudioClip;
+
+
+    public void AlarmClockSound()
     {
-        animator.SetTrigger("WaterBucket");
-        animator.ResetTrigger("WaterBucket");
-    }
-
-    //plays alarm clock animation
-    void AlarmClock()
-    {
-
-    }
-
-    //plays chip can animation
-    void ChipCan()
-    {
-
+        AlarmAudioSource.PlayOneShot(AlarmAudioClip);
     }
 
 }
