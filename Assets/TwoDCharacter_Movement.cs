@@ -36,18 +36,13 @@ public class TwoDCharacter_Movement : MonoBehaviour
 
     private void Move(Vector3 Direction)
     {
-        Vector3 Destination = transform.position + Direction;
+        Vector3 Destination = transform.position += Direction;
         //Vector3 Destination = transform.position + Direction;
-        Collider2D barrier = Physics2D.OverlapBox(Destination, Vector2.zero, 0f, LayerMask.GetMask("Barrier"));
-        if (barrier != null)
-        {
-            return;
-        }
-
-        if (Destination.x < 10 && Destination.x > -10)
-        { 
-            transform.position += Destination; 
-        }
+        //Collider2D barrier = Physics2D.OverlapBox(Destination, Vector2.zero, 0f, LayerMask.GetMask("Barrier"));
+        //if (barrier != null)
+        //{
+        //    return;
+        //}
     }
 
   
