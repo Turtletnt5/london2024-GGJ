@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TwoDCharacter_Movement : MonoBehaviour
 {
-
+    private Vector3 spawnPosition;
+    private float farthestRow;
 
     // Update is called once per frame
     private void Update()
@@ -45,6 +46,21 @@ public class TwoDCharacter_Movement : MonoBehaviour
         //}
     }
 
-  
+    public void Respawn()
+    {
+        // Stop animations
+        //StopAllCoroutines();
+
+        // Reset transform to spawn
+        transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
+        farthestRow = spawnPosition.y;
+
+        // Enable control
+        //gameObject.SetActive(true);
+        //enabled = true;
+        //cooldown = false;
+    }
+
+
 }
 
