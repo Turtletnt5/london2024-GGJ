@@ -11,9 +11,10 @@ public class PlayerLose : MonoBehaviour
 
     Collider2D Obstacles_;
 
+    // To make a ref from other script.
     TwoDCharacter_Movement TwoDCharacter;
 
-    //[SerializeField] private Text livesText;
+    // Displaying Gameobjects.
     [SerializeField] Collider2D obstacles_;
     [SerializeField] private Text MylivesText;
     private int lives;
@@ -21,29 +22,39 @@ public class PlayerLose : MonoBehaviour
    // private int Lives => lives;
     private int CurrentLives = 3;
 
+    //public Transform spawnPoint;
+    public Vector3 spawnPoint;
+
+    private float farthestRow;
+
+    public GameObject RespawnPoint;
+    public GameObject Player;
 
 
     void Start()
     {
 
        lives = 3;
-       MylivesText.text = "Lives: " + lives;
-        OnTriggerEnter2D(obstacles_);
+       MylivesText.text = "Lives: " + lives; // Display Player's lives from UI.
+       //OnTriggerEnter2D(obstacles_);
+        //Respawn();
         
 
     }
     private void NewGame()
     {
 
-        SetLives(3);
+        SetLives(3); // To set up Player Lives.
         //NewLevel();
     }
 
     private void Respawn()
     {
         Losing();
-        //OnTriggerEnter2D(Obstacles_);
-        TwoDCharacter.Respawn();
+        //TwoDCharacter.Respawn();
+        //transform.position = spawnPoint.position;
+        //transform.SetPositionAndRotation(spawnPoint, Quaternion.identity);
+        //farthestRow = spawnPoint.y;
     }
 
     private void Losing()
@@ -51,13 +62,20 @@ public class PlayerLose : MonoBehaviour
         OnTriggerEnter2D(obstacles_);
     }
 
-    public void OnTriggerEnter2D(Collider2D Obstacles)
+    //public void OnTriggerEnter2D(Collider2D Obstacles)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (Obstacles.tag == "Obstacles")
+        //if (Obstacles.tag == "Obstacles")
+        //{
+        //    //MylivesText.text = "Lives : " - CurrentLives;
+        //    Died();
+        //};
+
+        if (other.gameObject.CompareTag("Player") || other.tag == "Obstacles")
         {
-            //MylivesText.text = "Lives : " - CurrentLives;
+            Player.transform.position = RespawnPoint.transform.position;
             Died();
-        };
+        }
             //SceneManager.LoadScene("GameOverScene");
     }
 
@@ -69,15 +87,18 @@ public class PlayerLose : MonoBehaviour
 
     public void Died()
     {
+        // Minus lives after player got hit by a obstacles.
         SetLives(lives - 1);
 
         if (lives > 0)
         {
+            // Player is respawning to the starting point after losing live.
             Invoke(nameof(Respawn), 1f);
         }
         else
         {
-            Invoke(nameof(GameOver), 1f);
+            // Takes player to the game over screen after losing 3 lives.
+            Invoke(nameof(GameOver), 0f);
         }
     }
 

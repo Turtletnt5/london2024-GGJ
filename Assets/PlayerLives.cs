@@ -42,7 +42,7 @@ public class PlayerLives : MonoBehaviour
     private void Respawn()
     {
    
-        PlayerLose_.OnTriggerEnter2D(obstacles_);
+        //PlayerLose_.OnTriggerEnter2D(obstacles_);
         TwoDCharacter.Respawn();
     }
 

@@ -25,6 +25,7 @@ public class WinScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D Food)
     {
 
+        // To tag the Food in order to be collected.
         if (Food.tag == "Food")
         {
             ScoreNum += 1;
@@ -32,11 +33,13 @@ public class WinScript : MonoBehaviour
             MyscoreText.text = "Ramon : Collected " + ScoreNum;
         }
 
+        // When the item is collected.
         if (ScoreNum >= MaxScore)
         {
             WinCondition = true;
         }
 
+        // After collecting it, it takes the player to the Chapters Menu.
         if (WinCondition == true)
         {
             SceneManager.LoadScene("GameOverScene");
