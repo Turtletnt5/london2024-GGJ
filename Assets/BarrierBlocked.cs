@@ -8,13 +8,21 @@ public class BarrierBlocked : MonoBehaviour
 
     //public GameObject RespawnPoint;
     public GameObject Player;
+    public GameObject BarrierBlocked_;
+    [SerializeField] Collider2D Barrier_;
 
     private void OnTriggerEnter2D(Collider2D Barrier, Vector3 Direction)
     {
         Barrier = Physics2D.OverlapBox(Direction, Vector2.zero, 0f, LayerMask.GetMask("Barrier"));
-        if (Barrier.gameObject.CompareTag("Player") || Barrier.tag != "Barrier")
+        if (Player.gameObject.CompareTag("Player") || Barrier.gameObject.CompareTag("Barrier"))
         {
-            return;
+            if (Barrier.tag == "Barrier") { 
+                if(BarrierBlocked_ != null) 
+                {
+                    //Player.transform.position = BarrierBlocked_.transform.position;
+                    return;
+                }
+            }
         }
     }
 }

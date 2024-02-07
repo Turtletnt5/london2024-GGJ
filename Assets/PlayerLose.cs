@@ -19,9 +19,6 @@ public class PlayerLose : MonoBehaviour
     [SerializeField] private Text MylivesText;
     private int lives;
 
-   // private int Lives => lives;
-    private int CurrentLives = 3;
-
     //public Transform spawnPoint;
     public Vector3 spawnPoint;
 
@@ -31,83 +28,83 @@ public class PlayerLose : MonoBehaviour
     public GameObject Player;
 
 
-    void Start()
-    {
+    //void Start()
+    //{
 
-       lives = 3;
-       MylivesText.text = "Lives: " + lives; // Display Player's lives from UI.
-       //OnTriggerEnter2D(obstacles_);
-        //Respawn();
+    //   lives = 4;
+    //   MylivesText.text = "Lives: " + lives; // Display Player's lives from UI.
+    //   //OnTriggerEnter2D(obstacles_);
+    //    //Respawn();
         
 
-    }
-    private void NewGame()
-    {
+    //}
+    //private void NewGame()
+    //{
 
-        SetLives(3); // To set up Player Lives.
-        //NewLevel();
-    }
+    //    SetLives(4); // To set up Player Lives.
+    //    //NewLevel();
+    //}
 
     private void Respawn()
     {
-        Losing();
+        //Losing();
         //TwoDCharacter.Respawn();
         //transform.position = spawnPoint.position;
         //transform.SetPositionAndRotation(spawnPoint, Quaternion.identity);
         //farthestRow = spawnPoint.y;
     }
 
-    private void Losing()
-    {
-        OnTriggerEnter2D(obstacles_);
-    }
+    //public void Losing()
+    //{
+    //    OnTriggerEnter2D(obstacles_);
+    //}
 
     //public void OnTriggerEnter2D(Collider2D Obstacles)
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        //if (Obstacles.tag == "Obstacles")
-        //{
-        //    //MylivesText.text = "Lives : " - CurrentLives;
-        //    Died();
-        //};
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    //if (Obstacles.tag == "Obstacles")
+    //    //{
+    //    //    //MylivesText.text = "Lives : " - CurrentLives;
+    //    //    Died();
+    //    //};
 
-        if (other.gameObject.CompareTag("Player") || other.tag == "Obstacles")
-        {
-            Player.transform.position = RespawnPoint.transform.position;
-            Died();
-        }
-            //SceneManager.LoadScene("GameOverScene");
-    }
+    //    if (other.gameObject.CompareTag("Player") || other.tag == "Obstacles")
+    //    {
+    //        Player.transform.position = RespawnPoint.transform.position;
+    //        Died();
+    //    }
+    //        //SceneManager.LoadScene("GameOverScene");
+    //}
 
-    private void SetLives(int lives)
-    {
-        this.lives = lives;
-        MylivesText.text = "Lives: " + lives;
-    }
+    //private void SetLives(int lives)
+    //{
+    //    this.lives = lives;
+    //    MylivesText.text = "Lives: " + lives;
+    //}
 
-    public void Died()
-    {
-        // Minus lives after player got hit by a obstacles.
-        SetLives(lives - 1);
+    //public void Died()
+    //{
+    //    // Minus lives after player got hit by a obstacles.
+    //    SetLives(lives - 1);
 
-        if (lives > 0)
-        {
-            // Player is respawning to the starting point after losing live.
-            Invoke(nameof(Respawn), 1f);
-        }
-        else
-        {
-            // Takes player to the game over screen after losing 3 lives.
-            Invoke(nameof(GameOver), 0f);
-        }
-    }
+    //    if (lives > 0)
+    //    {
+    //        // Player is respawning to the starting point after losing live.
+    //        Invoke(nameof(Respawn), 1f);
+    //    }
+    //    else
+    //    {
+    //        // Takes player to the game over screen after losing 3 lives.
+    //        Invoke(nameof(GameOver), 0f);
+    //    }
+    //}
 
-    private void GameOver()
-    {
-        //TwoDCharacter.gameObject.SetActive(false);
-        //PlayerLose_.OnTriggerEnter2D(obstacles_);
-        SceneManager.LoadScene("GameOverScene");
-    }
+    //private void GameOver()
+    //{
+    //    //TwoDCharacter.gameObject.SetActive(false);
+    //    //PlayerLose_.OnTriggerEnter2D(obstacles_);
+    //    SceneManager.LoadScene("GameOverScene");
+    //}
 
 
 }
