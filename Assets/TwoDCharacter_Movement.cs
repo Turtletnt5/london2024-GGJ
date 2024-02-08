@@ -152,7 +152,8 @@ public class TwoDCharacter_Movement : MonoBehaviour
         // Display death sprite
         transform.rotation = Quaternion.identity;
         GameManager.Instance.Died();
-     
+        //SceneManager.LoadScene("GameOverScene");
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -183,7 +184,7 @@ public class TwoDCharacter_Movement : MonoBehaviour
     {
         //TwoDCharacter.gameObject.SetActive(false);
         //PlayerLose_.OnTriggerEnter2D(obstacles_);
-        SceneManager.LoadScene("GameOverScene");
+        //SceneManager.LoadScene("GameOverScene");
         
     }
 

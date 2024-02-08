@@ -16,12 +16,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text MylivesText;
     //[SerializeField] private Text scoreText;
 
+    //[SerializeField] private GetItem item;
+    [SerializeField] private GameObject item;
 
     //private int lives;
     //private int score;
     //private int time;
 
-    //public int Lives => lives;
+    public int Lives => lives;
     //public int Score => score;
     //public int Time => time;
 
@@ -51,11 +53,12 @@ public class GameManager : MonoBehaviour
     private void NewGame()
     {
         gameOverMenu.SetActive(false);
-
+       // GameOver();
         //SetScore(0);
         SetLives(3);
         //NewLevel();
         NewLevel();
+        item.gameObject.SetActive(true);
     }
 
     private void NewLevel()
@@ -63,6 +66,7 @@ public class GameManager : MonoBehaviour
 
 
         RespawnPlayer();
+        
     }
 
     private void RespawnPlayer()
@@ -94,6 +98,8 @@ public class GameManager : MonoBehaviour
         gameOverMenu.SetActive(true);
         StopAllCoroutines();
         StartCoroutine(CheckForPlayAgain());
+        //NewGame();
+
     }
     private void SetLives(int lives)
     {
