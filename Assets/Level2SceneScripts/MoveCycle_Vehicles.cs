@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoveCycle_Cars : MonoBehaviour
 {
+
+    // Displaying variables for the cars.
     public Vector2 direction = Vector2.right;
 
     public float VehicleSpeed = 1f;
