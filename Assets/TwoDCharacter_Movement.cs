@@ -8,18 +8,10 @@ public class TwoDCharacter_Movement : MonoBehaviour
 {
     private Vector3 spawnPosition;
     Vector2 CheckpointPos;
-    //private float farthestRow;
-
-    //public Transform spawnPoint;
 
     // Update is called once per frame
 
-    //public GameObject RespawnPoint;
-    //public GameObject Player;
     private SpriteRenderer spriteRenderer;
-
-    //[SerializeField] Collider2D obstacles_;
-    //[SerializeField] private Text MylivesText;
     private int lives;
 
     //PlayerLose player__;
@@ -27,19 +19,38 @@ public class TwoDCharacter_Movement : MonoBehaviour
     private float farthestRow;
     private bool cooldown;
 
+    //[SerializeField] TwoDCharacter_Movement Player_;
+
+    /////////////////////////////////////////////////////////////
+
+    //[SerializeField] private Text MylivesText;
+
     void Start()
     {
-        spawnPosition = transform.position;
-        CheckpointPos = transform.position;
+        //CheckpointPos = transform.position;
+        //NewGame();
     }
 
     private void Awake()
     {
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spawnPosition = transform.position;
+        //spawnPosition = transform.position;
 
     }
+
+
+
+    //private void NewGame()
+    //{
+    //    SetLives(3);
+    //    NewLevel();
+    //}
+
+    //private void NewLevel()
+    //{
+    //    Respawn();
+    //}
 
 
     private void Update()
@@ -73,7 +84,6 @@ public class TwoDCharacter_Movement : MonoBehaviour
     {
         if (cooldown) return;
         Vector3 Destination = transform.position + Direction;
-        //Vector3 Destination = transform.position + Direction;
         Collider2D barrier = Physics2D.OverlapBox(Destination, Vector2.zero, 0f, LayerMask.GetMask("Barrier"));
         Collider2D obstacle = Physics2D.OverlapBox(Destination, Vector2.zero, 0f, LayerMask.GetMask("Obstacles"));
         if (barrier != null)
@@ -84,7 +94,7 @@ public class TwoDCharacter_Movement : MonoBehaviour
         if (obstacle != null)
         {
             transform.position = Destination;
-            PlayerDied();
+            //PlayerDied();
         }
 
         StartCoroutine(Leap(Destination));
@@ -96,97 +106,79 @@ public class TwoDCharacter_Movement : MonoBehaviour
         float elapsed = 0f;
         float duration = 0.125f;
 
-        // Set initial state
-        // spriteRenderer.sprite = leapSprite;
-        //cooldown = true;
-
         while (elapsed < duration)
         {
             // Move towards the destination over time
             float t = elapsed / duration;
             transform.position = Vector3.Lerp(startPosition, destination, t);
-            //Player.transform.position = Vector3.Lerp(startPosition, destination, t);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-
-
-        //player__.Losing();
-
         // Set final state
         transform.position = destination;
-        //spriteRenderer.sprite = idleSprite;
+
         cooldown = false;
     }
 
-    public void UpdateCheckpoint(Vector2 pos)
-    {
-        CheckpointPos = pos;
-    }
+    //public void UpdateCheckpoint(Vector2 pos)
+    //{
+    //    CheckpointPos = pos;
+    //}
 
-    public void Respawn()
-    {
-        //Player.transform.position = RespawnPoint.transform.position;
-        //GameManager.Instance.Died();
+    //public void Respawn()
+    //{
 
-        //OnTriggerEnter2D(obstacles_);
+    //    //playerRB.simulated = false;
+    //    transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
+    //    farthestRow = spawnPosition.y;
 
-        transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
-        farthestRow = spawnPosition.y;
+    //    transform.position = CheckpointPos;
 
-        transform.position = CheckpointPos;
+    //    gameObject.SetActive(true);
+    //    enabled = true;
+    //    cooldown = false;
+    //}
+    //public void PlayerDied()
+    //{
+    //    // Disable control
+    //    enabled = false;
 
-        gameObject.SetActive(true);
-        enabled = true;
-        cooldown = false;
-    }
+    //    SetLives(lives - 1);
 
+    //    if (lives > 0)
+    //    {
+    //        Invoke(nameof(Respawn), 1f);
+    //    }
+    //    else
+    //    {
+    //        Invoke(nameof(GameOver), 0f);
+    //    }
 
+    //}
 
-    public void PlayerDied()
-    {
-        // Disable control
-        enabled = false;
+    //private void SetLives(int lives)
+    //{
+    //    this.lives = lives;
+    //    MylivesText.text = lives.ToString();
+    //}
 
-        // Display death sprite
-        transform.rotation = Quaternion.identity;
-        GameManager.Instance.Died();
-        //SceneManager.LoadScene("GameOverScene");
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
 
-    }
+    //    bool hitObstacle = other.gameObject.layer == LayerMask.NameToLayer("Obstacles");
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        //if (Obstacles.tag == "Obstacles")
-        //{
-        //    //MylivesText.text = "Lives : " - CurrentLives;
-        //    Died();
-        //};
+    //    if (enabled && hitObstacle)
+    //    {
+    //        PlayerDied();
+    //    }
+    //}
 
-        //if (other.gameObject.CompareTag("Player") || other.tag == "Obstacles")
-        //if (other.tag == "Obstacles")
-        //{
-        //    //Player.transform.position = RespawnPoint.transform.position;
-        //    //Respawn();
-        //    PlayerDied();
-        //}
-        bool hitObstacle = other.gameObject.layer == LayerMask.NameToLayer("Obstacles");
+    //private void GameOver()
+    //{
+    //    SceneManager.LoadScene("GameOverScene");
 
-        if (enabled && hitObstacle)
-        {
-            PlayerDied();
-        }
-        //SceneManager.LoadScene("GameOverScene");
-    }
-
-    private void GameOver()
-    {
-        //TwoDCharacter.gameObject.SetActive(false);
-        //PlayerLose_.OnTriggerEnter2D(obstacles_);
-        //SceneManager.LoadScene("GameOverScene");
-
-    }
+    //}
 
 
 }

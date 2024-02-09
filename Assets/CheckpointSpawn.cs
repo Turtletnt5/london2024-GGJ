@@ -5,13 +5,13 @@ using UnityEngine;
 public class CheckpointSpawn : MonoBehaviour
 {
 
-    TwoDCharacter_Movement player;
+    PlayerLose player;
     public Transform checkpointspawn;
 
     // Start is called before the first frame update
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<TwoDCharacter_Movement>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLose>();
         //player = GameObject.FindGameObjectWithTag("Checkpoint").GetComponent<TwoDCharacter_Movement>();
     }
 

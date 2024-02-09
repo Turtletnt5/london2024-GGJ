@@ -41,9 +41,16 @@ public class PlayerLives : MonoBehaviour
 
     private void Respawn()
     {
-   
-        //PlayerLose_.OnTriggerEnter2D(obstacles_);
-        TwoDCharacter.Respawn();
+
+        //    //playerRB.simulated = false;
+        //    transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
+        //    farthestRow = spawnPosition.y;
+
+        //    transform.position = CheckpointPos;
+
+        //    gameObject.SetActive(true);
+        //    enabled = true;
+        //    cooldown = false;
     }
 
     //private void NewLevel()

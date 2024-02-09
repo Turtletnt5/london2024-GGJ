@@ -6,52 +6,89 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLose : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public bool LoseCondition = false;
+    //// Start is called before the first frame update
+    //public bool LoseCondition = false;
 
-    Collider2D Obstacles_;
+    //Collider2D Obstacles_;
 
-    // To make a ref from other script.
-    TwoDCharacter_Movement TwoDCharacter;
+    //// To make a ref from other script.
+    //TwoDCharacter_Movement TwoDCharacter;
 
-    // Displaying Gameobjects.
-    [SerializeField] Collider2D obstacles_;
-    [SerializeField] private Text MylivesText;
+    //// Displaying Gameobjects.
+    //[SerializeField] Collider2D obstacles_;
+    //[SerializeField] private Text MylivesText;
+    //private int lives;
+
+    ////public Transform spawnPoint;
+    //public Vector3 spawnPoint;
+
+    //private float farthestRow;
+
+    //public GameObject RespawnPoint;
+    //public GameObject Player;
+
+    private Vector3 spawnPosition;
+    Vector2 CheckpointPos;
+
+    // Update is called once per frame
+
+    private SpriteRenderer spriteRenderer;
     private int lives;
 
-    //public Transform spawnPoint;
-    public Vector3 spawnPoint;
+    //PlayerLose player__;
 
     private float farthestRow;
+    private bool cooldown;
 
-    public GameObject RespawnPoint;
-    public GameObject Player;
+    [SerializeField] TwoDCharacter_Movement Player_;
+
+    ///////////////////////////////////////////////////////////
+
+    [SerializeField] private Text MylivesText;
+
+    void Start()
+    {
+        CheckpointPos = transform.position;
+        NewGame();
+    }
+
+    private void Awake()
+    {
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spawnPosition = transform.position;
+
+    }
 
 
-    //void Start()
-    //{
 
-    //   lives = 4;
-    //   MylivesText.text = "Lives: " + lives; // Display Player's lives from UI.
-    //   //OnTriggerEnter2D(obstacles_);
-    //    //Respawn();
-        
+    private void NewGame()
+    {
+        SetLives(3);
+        NewLevel();
+    }
 
-    //}
-    //private void NewGame()
-    //{
-
-    //    SetLives(4); // To set up Player Lives.
-    //    //NewLevel();
-    //}
+    private void NewLevel()
+    {
+        Respawn();
+    }
 
     private void Respawn()
     {
-        //Losing();
-        //TwoDCharacter.Respawn();
-        //transform.position = spawnPoint.position;
-        //transform.SetPositionAndRotation(spawnPoint, Quaternion.identity);
-        //farthestRow = spawnPoint.y;
+        //playerRB.simulated = false;
+        transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
+        farthestRow = spawnPosition.y;
+
+        transform.position = CheckpointPos;
+
+        gameObject.SetActive(true);
+        enabled = true;
+        cooldown = false;
+    }
+
+    public void UpdateCheckpoint(Vector2 pos)
+    {
+        CheckpointPos = pos;
     }
 
     //public void Losing()
@@ -59,52 +96,53 @@ public class PlayerLose : MonoBehaviour
     //    OnTriggerEnter2D(obstacles_);
     //}
 
-    //public void OnTriggerEnter2D(Collider2D Obstacles)
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    //if (Obstacles.tag == "Obstacles")
-    //    //{
-    //    //    //MylivesText.text = "Lives : " - CurrentLives;
-    //    //    Died();
-    //    //};
+    //blic void OnTriggerEnter2D(Collider2D Obstacles)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //if (Obstacles.tag == "Obstacles")
+        //{
+        //    //MylivesText.text = "Lives : " - CurrentLives;
+        //    Died();
+        //};
 
-    //    if (other.gameObject.CompareTag("Player") || other.tag == "Obstacles")
-    //    {
-    //        Player.transform.position = RespawnPoint.transform.position;
-    //        Died();
-    //    }
-    //        //SceneManager.LoadScene("GameOverScene");
-    //}
+        bool hitObstacle = other.gameObject.layer == LayerMask.NameToLayer("Obstacles");
 
-    //private void SetLives(int lives)
-    //{
-    //    this.lives = lives;
-    //    MylivesText.text = "Lives: " + lives;
-    //}
+        if (enabled && hitObstacle)
+        {
+            Died();
+        }
+        //SceneManager.LoadScene("GameOverScene");
+    }
 
-    //public void Died()
-    //{
-    //    // Minus lives after player got hit by a obstacles.
-    //    SetLives(lives - 1);
+    private void SetLives(int lives)
+    {
+        this.lives = lives;
+        MylivesText.text = lives.ToString();
+    }
 
-    //    if (lives > 0)
-    //    {
-    //        // Player is respawning to the starting point after losing live.
-    //        Invoke(nameof(Respawn), 1f);
-    //    }
-    //    else
-    //    {
-    //        // Takes player to the game over screen after losing 3 lives.
-    //        Invoke(nameof(GameOver), 0f);
-    //    }
-    //}
+    public void Died()
+    {
+        // Minus lives after player got hit by a obstacles.
+        SetLives(lives - 1);
 
-    //private void GameOver()
-    //{
-    //    //TwoDCharacter.gameObject.SetActive(false);
-    //    //PlayerLose_.OnTriggerEnter2D(obstacles_);
-    //    SceneManager.LoadScene("GameOverScene");
-    //}
+        if (lives > 0)
+        {
+            // Player is respawning to the starting point after losing live.
+            Invoke(nameof(Respawn), 1f);
+        }
+        else
+        {
+            // Takes player to the game over screen after losing 3 lives.
+            Invoke(nameof(GameOver), 0f);
+        }
+    }
+
+    private void GameOver()
+    {
+        //TwoDCharacter.gameObject.SetActive(false);
+        //PlayerLose_.OnTriggerEnter2D(obstacles_);
+        SceneManager.LoadScene("GameOverScene");
+    }
 
 
 }

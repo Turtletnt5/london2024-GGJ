@@ -8,18 +8,23 @@ public class GameManager : MonoBehaviour
 
 {
     public static GameManager Instance { get; private set; }
+    //[SerializeField] private GameManager gm;
 
    // [SerializeField] private Home[] homes;
     [SerializeField] private TwoDCharacter_Movement Player;
-    [SerializeField] private GameObject gameOverMenu;
+    //[SerializeField] private GameObject gameOverMenu;
     //[SerializeField] private Text timeText;
     [SerializeField] private Text MylivesText;
     //[SerializeField] private Text scoreText;
 
     //[SerializeField] private GetItem item;
     [SerializeField] private GameObject item;
+    private CheckpointSpawn Spawn;
+    //[SerializeField] public GameObject target;
 
+    private GetItem quest;
     private Vector3 spawnPosition;
+    private float farthestRow;
 
     //private int lives;
     //private int score;
@@ -31,11 +36,25 @@ public class GameManager : MonoBehaviour
 
     private int lives;
 
+    //private Vector3 spawnPositionPlayer;
+
+    //public bool isGameActive;
+
     private void Awake()
     {
+        //Player = GetComponent<TwoDCharacter_Movement>();
+        //MylivesText = GetComponent<Text>();
+        //item = GetComponent<GameObject>();
+
+        //Player = new TwoDCharacter_Movement();
+        ////MylivesText = gameObject.AddComponent<Text>();
+        //MylivesText = gameObject.AddComponent<Text>();
+        //item = new GameObject();
+
         if (Instance != null)
         {
-            DestroyImmediate(gameObject);
+            // DestroyImmediate(gameObject);
+            Destroy(gameObject);
         }
         else
         {
@@ -45,24 +64,65 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //private void Awake()
+    //{
+
+    //    //spriteRenderer = GetComponent<SpriteRenderer>();
+    //    //CheckpointPos = transform.position;
+    //    //spawnPositionPlayer = transform.position;
+    //    Player = GetComponent<TwoDCharacter_Movement>();
+    //    MylivesText = GetComponent<Text>();
+    //    item = GetComponent<GameObject>();
+
+    //}
+
+    //void StartGamw()
+    //{
+    //    MylivesText = GetComponent<Text>();
+    //}
+
+
     private void Start()
     {
         //lives = 4;
         //MylivesText.text = "Lives: " + lives; // Display Player's lives from UI.
+        //Player = GetComponent<TwoDCharacter_Movement>();
+
+        //Player = new TwoDCharacter_Movement();
+        //Player = GetComponent<TwoDCharacter_Movement>();
+        //MylivesText = gameObject.AddComponent<Text>();
+        //MylivesText = gameObject.AddComponent<Text>();
+       // item = new GameObject();
+        //item = GetComponent<GameObject>();
+
         NewGame();
+        //spawnPositionPlayer = transform.position;
+        //transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
+        //farthestRow = spawnPositionPlayer.y;
         //gameOverMenu.SetActive(false);
     }
 
     private void NewGame()
     {
-        gameOverMenu.SetActive(false);
-       // GameOver();
+        //gameOverMenu.SetActive(false);
+        //Player.RespawnfromStart();
+        // GameOver();
         //SetScore(0);
         SetLives(3);
+        //item.gameObject.SetActive(true);
+        //Player.gameObject.SetActive(true);
+        //quest.gameObject.SetActive(true);
+        
+        //GetItem.IsRamonFound = false;
+
+        //Spawn.gameObject.SetActive(true);
         //NewLevel();
         NewLevel();
-        item.gameObject.SetActive(true);
-        spawnPosition = transform.position;
+
+
+        //Player.RespawnfromStart();
+      
+        //spawnPosition = transform.position;
     }
 
     private void NewLevel()
@@ -70,12 +130,17 @@ public class GameManager : MonoBehaviour
 
 
         RespawnPlayer();
-        
+
+        //Player.RespawnfromStart();
+        item.gameObject.SetActive(true);
+        //Player.gameObject.SetActive(true);
+        //GetItem.IsRamonFound = true;
+
     }
 
     private void RespawnPlayer()
     {
-        Player.Respawn();
+        //Player.Respawn();
         StopAllCoroutines();
         //StopAllCoroutines();
         //StartCoroutine(Timer(30));
@@ -108,10 +173,12 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
 
-        Player.gameObject.SetActive(false);
-        gameOverMenu.SetActive(true);
-        StopAllCoroutines();
-        StartCoroutine(CheckForPlayAgain());
+        //Player.gameObject.SetActive(false);        
+        //gameOverMenu.SetActive(true);
+
+        SceneManager.LoadScene("GameOverScene");
+        //StopAllCoroutines();
+        //StartCoroutine(CheckForPlayAgain());
         //NewGame();
 
     }
@@ -121,20 +188,30 @@ public class GameManager : MonoBehaviour
         MylivesText.text = lives.ToString(); 
     }
 
-    private IEnumerator CheckForPlayAgain()
-    {
-        bool playAgain = false;
+    //void Reset()
+    //{
+    //    if (!target)
+    //        target = GameObject.FindWithTag("Player");
 
-        while (!playAgain)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                playAgain = true;
-            }
+    //}
 
-            yield return null;
-        }
+    //private IEnumerator CheckForPlayAgain()
+    //{
+    //    bool playAgain = false;
 
-        NewGame();
-    }
+    //    while (!playAgain)
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.Return))
+    //        {
+    //            playAgain = true;
+
+    //        }
+
+    //        yield return null;
+    //    }
+    //    //Reset();
+    //    //SceneManager.LoadScene("Level2Scene");
+    //    NewGame();
+     
+    //}
 }

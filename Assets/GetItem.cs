@@ -8,6 +8,7 @@ public class GetItem : MonoBehaviour
 
     public GameObject GetRamon_Txt;
     public GameObject RamonItem;
+    public Collider2D interact;
 
     public static bool IsRamonFound;
 
@@ -36,7 +37,12 @@ public class GetItem : MonoBehaviour
 
         if(IsRamonFound == true)
         {
-            SceneManager.LoadScene("GameOverScene");
+            SceneManager.LoadScene("WinScene");
         }
+    }
+
+    public void RespawnfromStart()
+    {
+        OnTriggerStay2D(interact);
     }
 }
