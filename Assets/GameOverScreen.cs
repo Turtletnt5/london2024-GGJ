@@ -8,7 +8,7 @@ public class GameOverScreen : MonoBehaviour
     // Start is called before the first frame update
     public void PlayGame()
     {
-        SceneManager.LoadScene("Level2Scene");
+        SceneManager.LoadScene("GameChaptersScene");
     }
 
     public void ExitGame()

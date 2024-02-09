@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private GetItem item;
     [SerializeField] private GameObject item;
 
+    private Vector3 spawnPosition;
+
     //private int lives;
     //private int score;
     //private int time;
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
         //lives = 4;
         //MylivesText.text = "Lives: " + lives; // Display Player's lives from UI.
         NewGame();
+        //gameOverMenu.SetActive(false);
     }
 
     private void NewGame()
@@ -59,6 +62,7 @@ public class GameManager : MonoBehaviour
         //NewLevel();
         NewLevel();
         item.gameObject.SetActive(true);
+        spawnPosition = transform.position;
     }
 
     private void NewLevel()
@@ -89,6 +93,16 @@ public class GameManager : MonoBehaviour
         {
             Invoke(nameof(GameOver), 0f);
         }
+
+        //if (lives > 0)
+        //{
+
+        //}
+        //else
+        //{
+        //    Invoke(nameof(GameOver), 0f);
+        //}
+
     }
 
     private void GameOver()

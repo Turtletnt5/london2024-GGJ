@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GetItem : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class GetItem : MonoBehaviour
             {
                 GetRamon_Txt.SetActive(true);
             }
+        }
+
+        if(IsRamonFound == true)
+        {
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }

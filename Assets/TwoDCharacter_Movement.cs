@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class TwoDCharacter_Movement : MonoBehaviour
 {
     private Vector3 spawnPosition;
+    Vector2 CheckpointPos;
     //private float farthestRow;
 
     //public Transform spawnPoint;
@@ -26,25 +27,24 @@ public class TwoDCharacter_Movement : MonoBehaviour
     private float farthestRow;
     private bool cooldown;
 
-    //void Start()
-    //{
-
-    //    //lives = 4;
-    //    //MylivesText.text = "Lives: " + lives; 
-    //    spawnPosition = transform.position;
-    //}
+    void Start()
+    {
+        spawnPosition = transform.position;
+        CheckpointPos = transform.position;
+    }
 
     private void Awake()
     {
-        
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         spawnPosition = transform.position;
+
     }
 
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             Move(Vector3.up);
@@ -56,13 +56,13 @@ public class TwoDCharacter_Movement : MonoBehaviour
             Move(Vector3.down);
         }
 
-        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             //transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             Move(Vector3.left);
         }
 
-        if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             //transform.rotation = Quaternion.Euler(0f, 0f, -90f);
             Move(Vector3.right);
@@ -78,7 +78,7 @@ public class TwoDCharacter_Movement : MonoBehaviour
         Collider2D obstacle = Physics2D.OverlapBox(Destination, Vector2.zero, 0f, LayerMask.GetMask("Obstacles"));
         if (barrier != null)
         {
-            return; 
+            return;
         }
 
         if (obstacle != null)
@@ -120,6 +120,11 @@ public class TwoDCharacter_Movement : MonoBehaviour
         cooldown = false;
     }
 
+    public void UpdateCheckpoint(Vector2 pos)
+    {
+        CheckpointPos = pos;
+    }
+
     public void Respawn()
     {
         //Player.transform.position = RespawnPoint.transform.position;
@@ -130,18 +135,13 @@ public class TwoDCharacter_Movement : MonoBehaviour
         transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
         farthestRow = spawnPosition.y;
 
+        transform.position = CheckpointPos;
+
         gameObject.SetActive(true);
         enabled = true;
         cooldown = false;
     }
 
- 
-
-    //private void SetLives(int lives)
-    //{
-    //    this.lives = lives;
-    //    MylivesText.text = "Lives: " + lives;
-    //}
 
 
     public void PlayerDied()
@@ -185,7 +185,7 @@ public class TwoDCharacter_Movement : MonoBehaviour
         //TwoDCharacter.gameObject.SetActive(false);
         //PlayerLose_.OnTriggerEnter2D(obstacles_);
         //SceneManager.LoadScene("GameOverScene");
-        
+
     }
 
 

@@ -7,7 +7,7 @@ public class PickupItem : MonoBehaviour
 
     public GameObject RamonItem;
     public GameObject PickedUpRamon_Txt;
-    public GameObject TotheOtherSide_Txt;
+   public GameObject TotheOtherSide_Txt;
 
     public GameObject PressE_Txt;
 
@@ -15,7 +15,8 @@ public class PickupItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PickedUpRamon_Txt.SetActive(false);
+        //PickedUpRamon_Txt.SetActive(false);
+        TotheOtherSide_Txt.SetActive(false);
         PressE_Txt.SetActive(false);
     }
 
@@ -35,8 +36,9 @@ public class PickupItem : MonoBehaviour
                 RamonItem.SetActive(false);
                 PickedUpRamon_Txt.SetActive(false);
 
-                TotheOtherSide_Txt.SetActive(true);
+                
                 PressE_Txt.SetActive(false);
+                TotheOtherSide_Txt.SetActive(true);
                 GetItem.IsRamonFound = true;
 
             }
