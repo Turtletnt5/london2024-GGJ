@@ -13,7 +13,7 @@ public class LevelsMenuScene : MonoBehaviour
 
     public void PlayLevelTwo()
     {
-        //SceneManager.LoadScene("Level 2");
+        SceneManager.LoadScene("Level2Scene");
     }
 
     public void BackToTheMainMenu()

@@ -225,7 +225,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 414311812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24f31694c929ae740b072ce626a2173a, type: 3}
+  m_Script: {fileID: 11500000, guid: c23bd8109f55ee14eb90e3e59cc2caab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &772883352
@@ -692,7 +692,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 414311816}
-        m_TargetAssemblyTypeName: GameOverScreen, Assembly-CSharp
+        m_TargetAssemblyTypeName: WinScreen, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
